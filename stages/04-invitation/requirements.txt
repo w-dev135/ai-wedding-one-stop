@@ -1,0 +1,5 @@
+# Image preparation and share poster generation. Core HTML generation uses stdlib.
+Pillow
+qrcode
+fonttools
+# Optional QR decoding: install zxing-cpp in the same environment when available.

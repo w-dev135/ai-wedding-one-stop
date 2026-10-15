@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>{{TRIP_TITLE}} — 专属蜜月路书</title>
+  <style>
+    :root {
+      --bg-sand: #FAF7F2;
+      --bg-card: #FFFFFF;
+      --accent-rose: #C88A70;
+      --accent-deep: #8C5843;
+      --text-main: #2C2523;
+      --text-sub: #6E625E;
+      --border-soft: #EAE2D8;
+      --tag-bg: #F4ECE4;
+      --shadow-soft: 0 8px 24px rgba(140, 88, 67, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Serif SC", sans-serif;
+      background-color: var(--bg-sand);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding-bottom: 60px;
+    }
+
+    .hero {
+      background: linear-gradient(155deg, #4A352F 0%, #8C5843 52%, #C88A70 100%);
+      color: #FFF;
+      padding: 42px 24px 36px;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      box-shadow: 0 10px 30px rgba(74, 53, 47, 0.2);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-family: "Songti SC", "Noto Serif SC", serif;
+    }
+
+    .hero p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 12px;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-val { font-size: 15px; font-weight: 700; display: block; }
+    .stat-lbl { font-size: 11px; opacity: 0.85; }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      margin: 26px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Songti SC", "Noto Serif SC", serif;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--accent-rose);
+      border-radius: 2px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .mini-box {
+      background: var(--bg-sand);
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--accent-rose);
+    }
+    .mini-box h4 { font-size: 14px; color: var(--accent-deep); margin-bottom: 4px; }
+    .mini-box p { font-size: 12.5px; color: var(--text-sub); }
+
+    .day-tabs { display: flex; overflow-x: auto; gap: 8px; padding: 4px 2px 12px; scrollbar-width: none; }
+    .day-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      padding: 8px 16px;
+      border-radius: 22px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-card);
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-deep);
+      color: #FFF;
+      border-color: var(--accent-deep);
+    }
+
+    .day-panel { display: none; }
+    .day-panel.active { display: block; }
+
+    .day-header { border-bottom: 1px dashed var(--border-soft); padding-bottom: 12px; margin-bottom: 14px; }
+    .day-tag { font-size: 12px; color: var(--accent-rose); font-weight: 600; }
+    .day-title { font-size: 18px; font-weight: 600; margin: 4px 0 6px; }
+    .day-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--text-sub); }
+    .badge { background: var(--tag-bg); color: var(--accent-deep); padding: 2px 9px; border-radius: 6px; font-size: 11.5px; }
+
+    .timeline { position: relative; padding-left: 18px; margin: 14px 0; }
+    .timeline::before { content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 2px; background: var(--border-soft); }
+    .tl-item { position: relative; margin-bottom: 16px; }
+    .tl-item::before {
+      content: ""; position: absolute; left: -18px; top: 6px; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--accent-rose); border: 2px solid #FFF; box-shadow: 0 0 0 1px var(--accent-rose);
+    }
+    .tl-time { font-size: 12px; font-weight: 600; color: var(--accent-deep); }
+    .tl-title { font-size: 14.5px; font-weight: 600; margin: 2px 0 4px; }
+    .tl-desc { font-size: 13px; color: var(--text-sub); }
+
+    .nav-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .amap-btn {
+      display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px;
+      background: #F8EFEA; color: var(--accent-deep); border: 1px solid #E2CFC5;
+      border-radius: 20px; font-size: 12px; font-weight: 500; text-decoration: none;
+    }
+
+    .extra-box {
+      background: #FCF9F5; border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md); padding: 12px; margin-top: 12px; font-size: 12.5px;
+    }
+
+    .budget-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .budget-table th, .budget-table td { padding: 10px 8px; border-bottom: 1px solid var(--border-soft); text-align: left; }
+    .budget-table th { color: var(--accent-deep); background: var(--bg-sand); }
+    .budget-total { font-weight: 700; color: var(--accent-deep); background: #F9F2EC; }
+
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px; padding: 9px 0;
+      border-bottom: 1px dashed var(--border-soft); cursor: pointer; font-size: 13.5px;
+    }
+    .check-item.checked span { text-decoration: line-through; color: #A59B96; }
+    .reset-btn {
+      margin-top: 12px; background: none; border: 1px solid var(--border-soft);
+      padding: 6px 12px; border-radius: 8px; font-size: 12px; color: var(--text-sub); cursor: pointer;
+    }
+    .footer { text-align: center; font-size: 12px; color: var(--text-sub); margin-top: 30px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <span class="hero-badge">HONEYMOON ROADBOOK · {{SEASON_TAG}}</span>
+    <h1>{{TRIP_TITLE}}</h1>
+    <p>{{TRIP_SUBTITLE}}</p>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-val">{{DAYS}}</span><span class="stat-lbl">连住慢节奏</span></div>
+      <div class="stat-item"><span class="stat-val">{{AVG_DRIVE}}</span><span class="stat-lbl">日均车程</span></div>
+      <div class="stat-item"><span class="stat-val">{{TOTAL_BUDGET}}</span><span class="stat-lbl">双人总预算</span></div>
+      <div class="stat-item"><span class="stat-val">{{HIGHLIGHT_METRIC}}</span><span class="stat-lbl">核心亮点</span></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Agent 将按实际蜜月行程填充此处模块：1.大交通与黄金法则 2.逐日Tab与高德URI按钮 3.精选美宿 4.双人预算表 5.持久化CheckList -->
+  </main>
+
+  <script>
+    function switchDay(index) {
+      var buttons = document.querySelectorAll('.tab-btn');
+      var panels = document.querySelectorAll('.day-panel');
+      buttons.forEach(function(btn, i) { btn.classList.toggle('active', i === index); });
+      panels.forEach(function(panel, i) { panel.classList.toggle('active', i === index); });
+    }
+  </script>
+</body>
+</html>

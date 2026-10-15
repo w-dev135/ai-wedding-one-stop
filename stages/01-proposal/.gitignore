@@ -1,0 +1,4 @@
+private-projects/
+outputs/
+.env
+.DS_Store

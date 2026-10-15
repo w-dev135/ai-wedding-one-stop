@@ -1,0 +1,13 @@
+interface:
+  display_name: 动态婚礼电子请柬
+  short_description: 婚纱照生成动态请柬，支持音乐、修改续做、公开发布与微信分享海报
+  default_prompt: 使用 $create-wedding-invitation 制作动态婚礼电子请柬，比较风格并发布，再生成可发给微信好友的二维码海报。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

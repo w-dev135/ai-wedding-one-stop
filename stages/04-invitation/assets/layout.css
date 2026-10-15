@@ -1,0 +1,52 @@
+/* Each style uses a different photo composition; contain is the default. */
+[hidden]{display:none!important}
+.hero{padding:68px 30px 72px;min-height:100svh;gap:0}
+.cover-photo{height:auto;min-height:0;width:88%;max-height:none;aspect-ratio:3/4;background:var(--soft)}
+.cover-photo img{height:100%;width:100%;background:var(--soft)}
+.hero.landscape .cover-photo{aspect-ratio:4/3}.hero.square .cover-photo{aspect-ratio:1}
+.hero-core{animation:none}.names,.hero-note,.eyebrow,.body-copy,.address strong{overflow-wrap:anywhere}
+.hero-note{line-height:1.8;max-width:25em}.date-big{font-size:clamp(24px,8vw,42px)}
+.names{line-height:1.55}.date{letter-spacing:.12em}.intro .date{line-height:1.7}
+.intro-inner{max-height:calc(100svh - 65px);overflow:auto;padding:46px 25px 20px}
+.intro .symbol{font-size:clamp(85px,22svh,145px);margin-bottom:22px}
+.floral .intro .symbol{width:clamp(125px,25svh,185px);height:clamp(125px,25svh,185px);font-size:clamp(78px,17svh,115px)}
+.intro .overline{margin-bottom:18px}.intro .open{margin-top:22px}
+.intro .names{font-size:clamp(20px,5.6vw,30px)}
+.demo{max-width:calc(100vw - 24px);font-size:11px;top:max(9px,env(safe-area-inset-top))}
+.body-copy{letter-spacing:.04em}.story-copy{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.photo-grid{align-items:start;gap:20px 14px;margin-top:35px}
+.photo-card{margin:0;height:auto;min-height:0;overflow:visible;position:relative;background:transparent}
+.photo-card img{height:auto;aspect-ratio:3/4;border:1px solid var(--line);background:var(--soft)}
+.photo-card.landscape{grid-column:1/-1}.photo-card.landscape img{aspect-ratio:4/3}
+.photo-card.square img{aspect-ratio:1}.photo-card:first-child:last-child{height:auto;grid-column:1/-1}
+.photo-card:first-child:nth-last-child(3){height:auto}
+.photo-card figcaption{font-size:12px;line-height:1.8;margin-top:10px;letter-spacing:.09em;overflow-wrap:anywhere}
+.redwhite .hero{border-bottom:16px solid var(--accent);text-align:left}
+.redwhite .cover-photo{width:92%;border:0;box-shadow:12px 12px 0 var(--soft);margin-bottom:38px}
+.redwhite .hero-core{padding:0 12px;text-align:left}
+.redwhite .names{font-size:clamp(28px,8vw,43px)}
+.redwhite .hero-core .hero-note{margin-left:0}.redwhite .hero-core .date{border-top:1px solid var(--line);padding-top:18px}
+.redwhite .album .photo-card:nth-child(even){transform:none}
+.redwhite .event{text-align:left}.redwhite .event .info-line{margin-left:0}
+.floral .hero{padding:78px 40px 82px}
+.floral .cover-photo{width:87%;border:7px solid var(--paper);box-shadow:0 15px 40px #74374125}
+.floral .photo-grid{gap:26px 16px}
+.floral .album .photo-card{border:0}.floral .photo-card img{border:7px solid var(--paper);box-shadow:0 8px 25px #75314218}
+.gold .hero{padding:82px 34px 78px}
+.gold .cover-photo{width:84%;margin-bottom:30px;outline:5px solid var(--paper);border:1px solid var(--accent)}
+.gold .photo-grid{grid-template-columns:1fr;gap:30px}
+.gold .photo-card img{max-height:630px;aspect-ratio:auto;width:100%;outline:5px solid var(--paper)}
+.gold .event{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--soft);color:var(--ink)}
+.gold .event .section-label{color:var(--accent)}
+.volume-control{font:12px/1.8 system-ui,sans-serif;display:grid;gap:8px;max-width:210px;margin:15px auto}
+.volume-control input{width:100%;accent-color:var(--accent)}
+.no-effects *,.no-effects *:before,.no-effects *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.no-effects .reveal{opacity:1;transform:none}
+.reveal{opacity:1;transform:none}
+.js-motion .reveal:not(.visible){opacity:0;transform:translateY(22px)}
+.no-photo-motion .cover-photo img,.no-photo-motion .photo-card img{animation:none!important;transition:none!important}
+.paused-effects .confetti,.paused-effects .arch-line path{animation-play-state:paused}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(max-width:360px){.hero,.floral .hero,.gold .hero{padding-left:26px;padding-right:26px}.hero-core .overline{letter-spacing:.16em}.info-line{font-size:14px}.actions button,.actions a{padding:12px}}
+@media(max-height:620px){.intro-inner{padding-top:22px}.intro .symbol{margin-bottom:10px}.intro .overline{margin-bottom:10px}.intro .hero-note{margin-top:12px}.intro .open{margin-top:15px}}
+@media(prefers-reduced-motion:reduce){.hero-core,.photo-card img{animation:none!important}.reveal{opacity:1;transform:none}}

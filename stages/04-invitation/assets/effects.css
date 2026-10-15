@@ -1,0 +1,42 @@
+.intro{display:none;position:fixed;inset:0;z-index:30;overflow:hidden;isolation:isolate;background:var(--paper);color:var(--ink)}
+.has-intro{overflow:hidden}.has-intro .intro{display:grid;place-items:center}.intro[hidden]{display:none!important}
+.door{position:absolute;top:0;bottom:0;width:50.2%;background:var(--paper);transition:transform 1.45s cubic-bezier(.3,.05,.15,1),opacity 1.35s;z-index:0;backface-visibility:hidden}
+.door.left{left:0;border-right:1px solid var(--accent);transform-origin:0 50%}.door.right{right:0;transform-origin:100% 50%}
+.door:before{content:"";position:absolute;inset:25px 18px;border:1px solid var(--line);opacity:.65}
+.intro-inner{position:relative;z-index:2;padding:60px 30px 30px;text-align:center;width:min(100%,520px);transition:opacity .45s,transform .65s}
+.intro .names{font-size:clamp(23px,6vw,34px)}.intro .symbol{margin-bottom:32px}.intro .overline{margin-bottom:28px}.intro .open{margin-top:32px;background:var(--accent);color:var(--paper)}
+.silent{display:block;margin:17px auto 0;border:0;background:transparent;color:inherit;font-size:13px;letter-spacing:.12em;text-decoration:underline;text-underline-offset:5px;padding:8px 14px}
+.skip{position:absolute;bottom:25px;right:25px;z-index:4;color:inherit;border:0;background:transparent;opacity:.7;padding:10px;font:12px system-ui,sans-serif}
+.intro.opening{background:transparent;pointer-events:none}.intro.opening .intro-inner{opacity:0;transform:translateY(-12px) scale(.97)}
+.intro.opening .skip{pointer-events:auto}
+.demo{z-index:45;pointer-events:none}
+.redwhite .intro.opening .left{transform:perspective(1100px) rotateY(-95deg)}.redwhite .intro.opening .right{transform:perspective(1100px) rotateY(95deg)}
+.floral .door{background:#f3e8d8}.floral .door:before{border-radius:45% 45% 0 0}.floral .intro .symbol{border:1px solid var(--accent);width:200px;height:200px;display:grid;place-items:center;border-radius:50%;font-size:120px;letter-spacing:0;padding:0}
+.floral .intro.opening .left{transform:translateX(-100%) rotate(-5deg);opacity:0}.floral .intro.opening .right{transform:translateX(100%) rotate(5deg);opacity:0}
+.window-ring{display:none}.floral .window-ring{display:block;position:absolute;left:50%;top:42%;width:min(66vw,310px);aspect-ratio:1;border:1px solid var(--accent);border-radius:50%;transform:translate(-50%,-50%);opacity:.25;transition:transform 1.4s,opacity 1.3s;pointer-events:none}.floral .intro.opening .window-ring{transform:translate(-50%,-50%) scale(3.2);opacity:0}
+.gold .door{background:#4b0c1a}.gold .intro.opening .left{opacity:0;transform:translateX(-12%)}.gold .intro.opening .right{opacity:0;transform:translateX(12%)}
+.arch-line{position:absolute;inset:7% 9%;width:82%;height:86%;z-index:1;pointer-events:none;opacity:0;transition:opacity .3s}.gold .arch-line{opacity:1}
+.arch-line path{fill:none;stroke:var(--accent);stroke-width:1;stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw-arch 2s .2s forwards}.intro.opening .arch-line{opacity:0}
+.intro .arch-line path{stroke-dashoffset:0;animation:none}.hero .arch-line path{animation:none}.opened .hero .arch-line path{animation:draw-arch 1.7s forwards}.no-effects .arch-line path{stroke-dashoffset:0;animation:none!important}
+.cover-photo{height:48svh;max-height:510px;min-height:240px;width:85%;position:relative;overflow:hidden;box-shadow:0 12px 40px #3c09282e;border:6px solid var(--paper);margin:0 auto 25px}
+.cover-photo img{width:100%;height:100%;object-fit:contain;background:#2b1a1a}.cover-photo .placeholder{height:100%}.hero{flex-direction:column;gap:0;padding-top:48px;padding-bottom:55px}
+.hero-core .symbol{font-size:58px;margin:0 auto 13px}.hero-core .overline{margin-bottom:12px}.hero-core .hero-note{margin-top:15px}.hero-core .open{margin-top:22px}.hero-core .date{margin-top:14px}
+.floral .cover-photo{border-radius:50% 50% 4px 4px/28% 28% 4px 4px;outline:1px solid var(--accent);outline-offset:6px}.gold .cover-photo{border:1px solid #d7aa63;outline:5px solid #571425}
+.gold .hero-core{padding:0}.gold .hero-core .symbol,.floral .hero-core .symbol{font-size:58px}.photo-card img,.hero-photo img{transition:opacity .9s,transform 1.3s}.photo-card.visible img{animation:photo-arrive 1.25s both}
+.petal{position:fixed;z-index:12;pointer-events:none;top:-35px;width:9px;height:16px;border-radius:80% 0 80% 0;background:#be617b;opacity:0;animation:petal-fall var(--duration,12s) linear var(--delay,0s) infinite}
+.spark{position:fixed;z-index:12;pointer-events:none;width:3px;height:3px;border-radius:50%;background:#f2cf8c;opacity:0;animation:glimmer var(--duration,7s) ease-in-out var(--delay,0s) infinite}
+.confetti{position:fixed;z-index:35;top:-10px;pointer-events:none;width:5px;height:10px;background:#d3a357;animation:confetti-fall var(--duration,2.4s) ease-out forwards}
+.flower-branch{position:absolute;z-index:2;top:4%;left:-22px;width:145px;height:270px;color:#8b3143;pointer-events:none;opacity:.45;transform-origin:0 100%;animation:branch-sway 7s ease-in-out infinite}
+.flower-branch.right{left:auto;right:-22px;top:auto;bottom:3%;transform:scaleX(-1);animation:none}.floral .flower-branch path{fill:none;stroke:currentColor;stroke-width:1.2}.flower-branch circle{fill:var(--paper);stroke:currentColor;stroke-width:1}
+.redwhite .flower-branch,.gold .flower-branch{display:none}.replay{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:10px 18px;margin:13px auto 0;font-size:12px;letter-spacing:.12em}
+.audio-status{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:40;background:#23181aeb;color:#fff;padding:9px 17px;border-radius:7px;font:12px/1.5 system-ui,sans-serif;max-width:85vw;text-align:center}
+.audio-status:empty{display:none}.music.playing{box-shadow:0 0 0 5px #d7aa6322}.paused-effects .petal,.paused-effects .spark,.paused-effects .flower-branch{animation-play-state:paused}
+.no-effects .petal,.no-effects .spark,.no-effects .flower-branch{display:none}
+.no-photo-motion .photo-card img{animation:none!important;transition:none!important}.demo~.music{top:58px}
+@keyframes draw-arch{to{stroke-dashoffset:0}}@keyframes photo-arrive{from{opacity:.2;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes petal-fall{0%{opacity:0;transform:translate3d(0,-30px,0) rotate(0)}10%{opacity:.45}85%{opacity:.4}100%{opacity:0;transform:translate3d(var(--drift,40px),105vh,0) rotate(240deg)}}
+@keyframes glimmer{0%,100%{opacity:0;transform:translateY(10px) scale(.5)}40%{opacity:.55;transform:translateY(-15px) scale(1)}70%{opacity:.15;transform:translateY(-35px) scale(.7)}}
+@keyframes confetti-fall{0%{opacity:.9;transform:translate3d(0,0,0) rotate(0)}100%{opacity:0;transform:translate3d(var(--drift,30px),85vh,0) rotate(490deg)}}
+@keyframes branch-sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@media(max-width:390px){.cover-photo{width:84%;height:43svh}.intro-inner{padding-left:25px;padding-right:25px}.intro .symbol{font-size:128px}.floral .intro .symbol{width:170px;height:170px;font-size:108px}}
+@media(prefers-reduced-motion:reduce){.petal,.spark,.confetti{display:none!important}.arch-line path{stroke-dashoffset:0}.door{transition:none}.reveal{opacity:1;transform:none}}

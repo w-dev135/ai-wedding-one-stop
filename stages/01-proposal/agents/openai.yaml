@@ -1,0 +1,13 @@
+interface:
+  display_name: 求婚定制向导
+  short_description: 按伴侣偏好策划求婚，支持皮克斯风格动画角色定型、分镜和逐镜提示词
+  default_prompt: 使用 $proposal-guided-wizard 帮我策划求婚，先了解我们的故事与她的偏好，再推荐风格。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
